@@ -10,6 +10,11 @@
 
 #include <AM2302-Sensor.h>
 
+void AM2302::AM2302_Sensor::begin() {
+    pinmode(_pin, INPUT_PULLUP);
+}
+
+
 int8_t AM2302::AM2302_Sensor::read() {
     // *****************************
     //  === send start sequence ===

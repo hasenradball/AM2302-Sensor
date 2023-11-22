@@ -25,10 +25,10 @@ namespace AM2302 {
     class AM2302_Sensor {
         
         public:
-            void setup();
+            void begin();
             int8_t read();
-            float get_Temperature() {return _temp * 0.1F;}
-            float get_Hunidity() {return _hum * 0.1F;}
+            float get_Temperature() const {return _temp * 0.1F;}
+            float get_Hunidity() const {return _hum * 0.1F;}
 
         
         private:
@@ -38,7 +38,7 @@ namespace AM2302 {
             uint8_t _pin;
             bool _checksum_ok {false};
 
-            int8_t read_sensor_data(int8_t *buffer, uint8_t size);
+            int8_t read_sensor_data(int8_t *buffer, uint8_t const size);
     };
 }
 #endif

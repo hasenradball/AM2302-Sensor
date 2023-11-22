@@ -1,1 +1,27 @@
+#######################################
+# Syntax Coloring Map for AM2302-Sensor
+#######################################
 
+
+#######################################
+# Library (KEYWORD1)
+#######################################
+# => Namespace
+AM2302              KEYWORD1
+AM2302-Sensor       KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+begin               KEYWORD2
+read                KEYWORD2
+get_Temperature     KEYWORD2
+get_Humidity        KEYWORD2
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+READ_OK             LITERAL1
+ERROR_CHECKSUM      LITERAL1
+ERROR_TIMEOUT       LITERAL1
