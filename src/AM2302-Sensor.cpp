@@ -42,10 +42,10 @@ int8_t AM2302::AM2302_Sensor::read() {
     pinMode(_pin, INPUT_PULLUP);
     // delay_us(30.0); not needed
 
-    // *****************************
-    //  === wait for Acknoledge ===
-    // ****************************
-    // Acknowlege Sequence 80us LOW 80 us HIGH
+    // ******************************
+    //  === wait for Acknowledge ===
+    // ******************************
+    // Acknowledge Sequence 80us LOW 80 us HIGH
     // wait for LOW (80 µs)
     await_state(0);
     // wait for HIGH (80 µs)

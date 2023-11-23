@@ -20,7 +20,7 @@ The most detailed datasheet you will find here: [AM2302 Product Manual](http://a
 
 
 **REMARK**:<br>
-Against the most documentations ans datasheets the following Pin description is correct(from left to right):
+Against the most documentations and datasheets the following Pin description is correct (from left to right):
 
 * Pin1: VDD (3,3...5 V)
 * Pin2: SDA (Serial Data, two way)
@@ -44,7 +44,7 @@ Include the library
 #include <AM2302-Sensor.h>
 ```
 
-The library use namespaces, so the Object can be instanciated and used by:
+The library use namespaces, so the object can be instantiated and used by:
 
 ```
 AM2302::AM2302_Sensor am2302{PIN};
