@@ -16,7 +16,7 @@ One small Docu you will find in the docs folder of this repo.
 
 The actual manufacturer page is linked here: [ASAIR AM2302](http://www.aosong.com/en/products-22.html).
 
-The most detailed datasheet you will find here: [Am2302 Product Manual](http://akizukidenshi.com/download/ds/aosong/AM2302.pdf)
+The most detailed datasheet you will find here: [AM2302 Product Manual](http://akizukidenshi.com/download/ds/aosong/AM2302.pdf)
 
 
 **REMARK**:<br>
