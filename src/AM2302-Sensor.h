@@ -15,9 +15,9 @@
 
 namespace AM2302 {
 
-    constexpr int8_t READ_OK 		{0};
-    constexpr int8_t ERROR_CHECKSUM	{-1};
-    constexpr int8_t ERROR_TIMEOUT	{-2};
+    constexpr int8_t AM2302_READ_OK 		{0};
+    constexpr int8_t AM2302_ERROR_CHECKSUM	{-1};
+    constexpr int8_t AM2302_ERROR_TIMEOUT	{-2};
 
     // define timeout in 100 µs
     constexpr uint8_t READ_TIMEOUT	{100U};
@@ -25,6 +25,7 @@ namespace AM2302 {
     class AM2302_Sensor {
         
         public:
+            explicit AM2302_Sensor(uint8_t pin);
             void begin();
             int8_t read();
             float get_Temperature() const {return _temp * 0.1F;}
@@ -37,8 +38,13 @@ namespace AM2302 {
             int16_t _temp {0};
             uint8_t _pin;
             bool _checksum_ok {false};
-
+            int8_t await_state(uint8_t state);
             int8_t read_sensor_data(int8_t *buffer, uint8_t const size);
     };
 }
+
+namespace AM2302_Tools {
+    void print_byte_as_bit(char value);
+}
+
 #endif

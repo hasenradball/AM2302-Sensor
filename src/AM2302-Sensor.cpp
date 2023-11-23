@@ -7,11 +7,22 @@
 *	Object: Measure Sensor Data of AM2302-Sensor
 *
 */
-
 #include <AM2302-Sensor.h>
 
+/**
+ * @brief Construct a new am2302::am2302 sensor::am2302 sensor object
+ * 
+ * @param pin Pin for AM2302 sensor
+ */
+AM2302::AM2302_Sensor::AM2302_Sensor(uint8_t pin) : _pin{pin}
+{}
+
+/**
+ * @brief begin function set Pin to INPUT_PULLUP with PullUp
+ * 
+ */
 void AM2302::AM2302_Sensor::begin() {
-    pinmode(_pin, INPUT_PULLUP);
+    pinMode(_pin, INPUT_PULLUP);
 }
 
 
@@ -25,8 +36,9 @@ int8_t AM2302::AM2302_Sensor::read() {
     // set Pin to LOW 
     digitalWrite(_pin, LOW);
     // wait min. 1,0 ms
-    delay_us(1200U);
-    // Set port to HIGH ==> Input with PullUp
+    delayMicroseconds(1200U);
+    // Set port to HIGH ==> INPUT_PULLUP with PullUp
+    digitalWrite(_pin, HIGH);
     pinMode(_pin, INPUT_PULLUP);
     // delay_us(30.0); not needed
 
@@ -48,8 +60,8 @@ int8_t AM2302::AM2302_Sensor::read() {
     // ==> HIGH state is 70 µs
     // ==> LOW state is 28 µs
     //for (uint8_t i = 0; i < 40U; ++i) {
-    if (read_sensor_data(data_buffer, 40U) == ERROR_TIMEOUT) {
-        return ERROR_TIMEOUT;
+    if (read_sensor_data(data_buffer, 40U) == AM2302_ERROR_TIMEOUT) {
+        return AM2302_ERROR_TIMEOUT;
     }
     // ==> END of time critical code <==
     uint8_t count{0};
@@ -64,13 +76,24 @@ int8_t AM2302::AM2302_Sensor::read() {
     // check checksum
     _checksum_ok = (_data[4] == ( (_data[0] + _data[1] + _data[2] + _data[3]) & 0xFF) );
 
+    /*
+    // Code part to check the checksum
+    // Due to older sensors have an bug an deliver wrong data
+    auto d4 = _data[4];
+    auto cs = ( (_data[0] + _data[1] + _data[2] + _data[3]) & 0xFF) ;
+    Serial.print("delivered Checksum:  ");
+    AM2302_Tools::print_byte_as_bit(d4);
+    Serial.print("calculated Checksum: ");
+    AM2302_Tools::print_byte_as_bit(cs);
+    */
+
     if (_checksum_ok) {
         _hum  = (_data[0] << 8) | _data[1];
         _temp = (_data[2] << 8) | _data[3];
-        return READ_OK;	
+        return AM2302_READ_OK;	
     }
     else {
-        return ERROR_CHECKSUM;
+        return AM2302_ERROR_CHECKSUM;
     }
 }
 
@@ -81,21 +104,21 @@ int8_t AM2302::AM2302_Sensor::read() {
  * @return int8_t status
  */
 int8_t AM2302::AM2302_Sensor::await_state(uint8_t state) {
-    uint8_t wait_counter{1}, state_counter{1};
+    uint8_t wait_counter{0}, state_counter{0};
     // count wait for state time
     while ( (digitalRead(_pin) != state) ) {
         ++wait_counter;
-        _delay_us(1.0);
+        delayMicroseconds(1U);
         if (wait_counter >= READ_TIMEOUT) {
-            return ERROR_TIMEOUT;
+            return AM2302_ERROR_TIMEOUT;
         }
     }
     // count state time
     while ( (digitalRead(_pin) == state) ) {
         ++state_counter;
-        _delay_us(1.0);
+        delayMicroseconds(1U);
         if (state_counter >= READ_TIMEOUT) {
-            return ERROR_TIMEOUT;
+            return AM2302_ERROR_TIMEOUT;
         }
     }
     return (state_counter > wait_counter);
@@ -112,22 +135,35 @@ int8_t AM2302::AM2302_Sensor::read_sensor_data(int8_t *buffer, uint8_t size) {
     for (uint8_t i = 0; i < size; ++i) {
         uint8_t wait_counter{0}, state_counter{0};
         // count wait for state time
-        while ( (!digitalRead()) ) {
+        while ( (!digitalRead(_pin)) ) {
             ++wait_counter;
-            _delay_us(1.0);
+            delayMicroseconds(1.0);
             if (wait_counter >= READ_TIMEOUT) {
-                return ERROR_TIMEOUT;
+                return AM2302_ERROR_TIMEOUT;
             }
         }
         // count state time
-        while ( (digitalRead()) ) {
+        while ( (digitalRead(_pin)) ) {
             ++state_counter;
-            _delay_us(1.0);
+            delayMicroseconds(1U);
             if (state_counter >= READ_TIMEOUT) {
-                return ERROR_TIMEOUT;
+                return AM2302_ERROR_TIMEOUT;
             }
         }
         buffer[i] = (state_counter > wait_counter);
     }
-    return READ_OK;
+    return AM2302_READ_OK;
+}
+
+/**
+ * @brief helper function to print byte as bit
+ * 
+ * @param value byte with 8 bits
+ */
+void AM2302_Tools::print_byte_as_bit(char value) {
+    for (int i = 7; i >= 0; --i) {
+        char c = (value & (1 << i)) ? '1' : '0';
+        Serial.print(c);
+    }
+    Serial.println();
 }
