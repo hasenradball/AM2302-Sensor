@@ -2,9 +2,9 @@
 *	AM2302-Sensor_Example.ino
 *
 *	Author: Frank Häfele
-*	Date:	24.11.2023
+*	Date:	21.11.2023
 *
-*	Object: Health check of AM2302-Sensor with Arduino IDE
+*	Object: Measure Sensor Data of AM2302-Sensor with Arduino IDE
 */
 
 #include <AM2302-Sensor.h>
@@ -37,16 +37,17 @@ void loop() {
     ++timeout_err;
   }
   Serial.print("\n\n");
-  Serial.print("status of sensor read(): ");
+  Serial.print("Sensor status:          ");
   Serial.println(status);
 
-  Serial.print("Number checksum erros:   ");
+  Serial.print("Number checksum errors: ");
   Serial.println(checksum_err);
 
-  Serial.print("Number timout erros:     ");
+  Serial.print("Number timeout errors:  ");
   Serial.println(timeout_err);
 
-  Serial.print("\nTemperature: ");
+  Serial.print("\n\n");
+  Serial.print("Temperature: ");
   Serial.println(am2302.get_Temperature());
 
   Serial.print("Humidity:    ");
