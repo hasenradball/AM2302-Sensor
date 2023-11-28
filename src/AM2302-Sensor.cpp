@@ -135,7 +135,7 @@ int8_t AM2302::AM2302_Sensor::read_sensor_data(int8_t *buffer, uint8_t size) {
     for (uint8_t i = 0; i < size; ++i) {
         uint8_t wait_counter{0}, state_counter{0};
         // count wait for state time
-        while ( (!digitalRead(_pin)) ) {
+        while ( !digitalRead(_pin) ) {
             ++wait_counter;
             delayMicroseconds(1.0);
             if (wait_counter >= READ_TIMEOUT) {
@@ -143,7 +143,7 @@ int8_t AM2302::AM2302_Sensor::read_sensor_data(int8_t *buffer, uint8_t size) {
             }
         }
         // count state time
-        while ( (digitalRead(_pin)) ) {
+        while ( digitalRead(_pin) ) {
             ++state_counter;
             delayMicroseconds(1U);
             if (state_counter >= READ_TIMEOUT) {
