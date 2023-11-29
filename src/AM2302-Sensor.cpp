@@ -58,6 +58,7 @@ int8_t AM2302::AM2302_Sensor::read() {
     // read 40 bits from sensor into the buffer:
     // ==> HIGH state is 70 µs
     // ==> LOW state is 28 µs
+    uint8_t _data[5U] = {0};
     if (read_sensor_data(_data, 5U) == AM2302_ERROR_TIMEOUT) {
         return AM2302_ERROR_TIMEOUT;
     }

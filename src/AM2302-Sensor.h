@@ -33,7 +33,6 @@ namespace AM2302 {
 
         
         private:
-            uint8_t _data[5];
             uint16_t _hum {0};
             int16_t _temp {0};
             uint8_t _pin;
