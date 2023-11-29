@@ -55,24 +55,14 @@ int8_t AM2302::AM2302_Sensor::read() {
     //  ==== Read Sensor Data ====
     // *****************************
     // ==> START of time critical code <==
-    int8_t data_buffer[40U];
-    // read 40 bits from sensor:
+    // read 40 bits from sensor into the buffer:
     // ==> HIGH state is 70 µs
     // ==> LOW state is 28 µs
-    //for (uint8_t i = 0; i < 40U; ++i) {
-    if (read_sensor_data(data_buffer, 40U) == AM2302_ERROR_TIMEOUT) {
+    if (read_sensor_data(_data, 5U) == AM2302_ERROR_TIMEOUT) {
         return AM2302_ERROR_TIMEOUT;
     }
     // ==> END of time critical code <==
-    uint8_t count{0};
-    int8_t val;
-    for (uint8_t i = 0; i < 5U; ++i) {
-        for (uint8_t j = 0; j < 8U; ++j) {
-            _data[i] <<= 1;
-            val = data_buffer[count++];
-            _data[i] |= val;
-        }
-    }
+    
     // check checksum
     _checksum_ok = (_data[4] == ( (_data[0] + _data[1] + _data[2] + _data[3]) & 0xFF) );
 
@@ -131,26 +121,29 @@ int8_t AM2302::AM2302_Sensor::await_state(uint8_t state) {
  * @param size of buffer => 40
  * @return int8_t 
  */
-int8_t AM2302::AM2302_Sensor::read_sensor_data(int8_t *buffer, uint8_t size) {
+int8_t AM2302::AM2302_Sensor::read_sensor_data(uint8_t *buffer, uint8_t size) {
     for (uint8_t i = 0; i < size; ++i) {
-        uint8_t wait_counter{0}, state_counter{0};
-        // count wait for state time
-        while ( !digitalRead(_pin) ) {
-            ++wait_counter;
-            delayMicroseconds(1.0);
-            if (wait_counter >= READ_TIMEOUT) {
-                return AM2302_ERROR_TIMEOUT;
+        for (uint8_t bit = 0; bit < 8U; ++bit) {
+            uint8_t wait_counter{0}, state_counter{0};
+            // count wait for state time
+            while ( !digitalRead(_pin) ) {
+                  ++wait_counter;
+                  delayMicroseconds(1.0);
+                  if (wait_counter >= READ_TIMEOUT) {
+                     return AM2302_ERROR_TIMEOUT;
+                  }
             }
-        }
-        // count state time
-        while ( digitalRead(_pin) ) {
-            ++state_counter;
-            delayMicroseconds(1U);
-            if (state_counter >= READ_TIMEOUT) {
-                return AM2302_ERROR_TIMEOUT;
+            // count state time
+            while ( digitalRead(_pin) ) {
+                  ++state_counter;
+                  delayMicroseconds(1U);
+                  if (state_counter >= READ_TIMEOUT) {
+                     return AM2302_ERROR_TIMEOUT;
+                  }
             }
+            buffer[i] <<= 1;
+            buffer[i] |= (state_counter > wait_counter);
         }
-        buffer[i] = (state_counter > wait_counter);
     }
     return AM2302_READ_OK;
 }

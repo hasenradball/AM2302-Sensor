@@ -39,7 +39,7 @@ namespace AM2302 {
             uint8_t _pin;
             bool _checksum_ok {false};
             int8_t await_state(uint8_t state);
-            int8_t read_sensor_data(int8_t *buffer, uint8_t const size);
+            int8_t read_sensor_data(uint8_t *buffer, uint8_t const size);
     };
 }
 
