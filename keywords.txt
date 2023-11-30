@@ -22,6 +22,6 @@ get_Humidity        KEYWORD2
 #######################################
 # Constants (LITERAL1)
 #######################################
-READ_OK             LITERAL1
-ERROR_CHECKSUM      LITERAL1
-ERROR_TIMEOUT       LITERAL1
+AM2302_READ_OK             LITERAL1
+AM2302_ERROR_CHECKSUM      LITERAL1
+AM2302_ERROR_TIMEOUT       LITERAL1
