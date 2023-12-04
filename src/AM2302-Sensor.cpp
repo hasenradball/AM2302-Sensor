@@ -79,9 +79,16 @@ int8_t AM2302::AM2302_Sensor::read() {
     */
 
     if (_checksum_ok) {
-        _hum  = (_data[0] << 8) | _data[1];
-        _temp = (_data[2] << 8) | _data[3];
-        return AM2302_READ_OK;	
+        _hum  = static_cast<uint16_t>((_data[0] << 8) | _data[1]);
+        if (data[2] & 0x80) {
+            // negative temperature detected
+            data[2] &= 0x7f;
+            _temp = -static_cast<int16_t>((_data[2] << 8) | _data[3]);
+        }
+        else {
+            _temp = static_cast<int16_t>((_data[2] << 8) | _data[3]);
+        }
+        return AM2302_READ_OK;
     }
     else {
         return AM2302_ERROR_CHECKSUM;
