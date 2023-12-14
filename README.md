@@ -5,7 +5,7 @@
 Sensor Library for the AM2302 Sensor (aka DHT22) from ASAIR
 This Library is a controller independent library for reading the AM2302 Sensor also known as DHT22.
 
-![AM2302-Sensor](./docs/AM2302.jpg)
+![AM2302-Sensor Adapter](./docs/AM2302_sensor_adapter.png)
 
 
 ## Contents

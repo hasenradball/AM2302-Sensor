@@ -9,26 +9,34 @@
 
 #include <AM2302-Sensor.h>
 
-AM2302::AM2302_Sensor am2302{7};
+constexpr unsigned int SENSOR_PIN {7U};
+
+AM2302::AM2302_Sensor am2302{SENSOR_PIN};
 
 void setup() {
-  Serial.begin(115200);
-  while (!Serial) {
-    yield();
-  }
-  Serial.print(F("\n >>> AM2302-sensor Health Check <<<\n\n"));
+   Serial.begin(115200);
+   while (!Serial) {
+      yield();
+   }
+   Serial.print(F("\n >>> AM2302-sensor Health Check <<<\n\n"));
 
-  // put your setup code here, to run once:
-  //set Pin
-  am2302.begin();
-  pinMode(LED_BUILTIN, OUTPUT);
-  digitalWrite(LED_BUILTIN, LOW);
+   // set pin and check for sensor
+   if (am2302.begin()) {
+      // this delay is needed to receive valid data,
+      // when the loop directly read again
+      delay(3000);
+   }
+   else {
+      while (true) {
+      Serial.println("Error: sensor check. => Please check sensor connection!");
+      delay(10000);
+      }
+   }
 }
 
 void loop() {
   static int checksum_err{0}, timeout_err {0};
   // put your main code here, to run repeatedly:
-  digitalWrite(LED_BUILTIN, HIGH);
   auto status = am2302.read();
   if (status == AM2302::AM2302_ERROR_CHECKSUM) {
       ++checksum_err;
@@ -51,7 +59,6 @@ void loop() {
   Serial.println(am2302.get_Temperature());
 
   Serial.print("Humidity:    ");
-  Serial.println(am2302.get_Hunidity());
-  digitalWrite(LED_BUILTIN, LOW);
-  delay(5000);
+  Serial.println(am2302.get_Humidity());
+  delay(10000);
 }

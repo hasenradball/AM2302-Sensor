@@ -7,16 +7,16 @@
 # Library (KEYWORD1)
 #######################################
 # => Namespace
-AM2302              KEYWORD1
-AM2302-Sensor       KEYWORD1
+AM2302                     KEYWORD1
+AM2302-Sensor              KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
 #######################################
-begin               KEYWORD2
-read                KEYWORD2
-get_Temperature     KEYWORD2
-get_Humidity        KEYWORD2
+begin                      KEYWORD2
+read                       KEYWORD2
+get_Temperature            KEYWORD2
+get_Humidity               KEYWORD2
 
 
 #######################################
