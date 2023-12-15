@@ -2,10 +2,10 @@
 [![Spell Check](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/spell_checker.yml/badge.svg)](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/spell_checker.yml)
 [![Compile Examples](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/compile_examples.yml/badge.svg)](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/compile_examples.yml)
 
-Sensor Library for the AM2302 Sensor (aka DHT22) from ASAIR
+Sensor Library for the AM2302 Sensor (aka DHT22) from ASAIR.<br>
 This Library is a controller independent library for reading the AM2302 Sensor also known as DHT22.
 
-![AM2302-Sensor](./docs/AM2302.jpg)
+![AM2302-Sensor Adapter](./docs/AM2302_sensor_adapter.png)
 
 
 ## Contents
