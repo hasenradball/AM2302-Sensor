@@ -73,6 +73,7 @@ The following status codes exists:
 * AM2302_READ_OK          {0};
 * AM2302_ERROR_CHECKSUM   {-1};
 * AM2302_ERROR_TIMEOUT    {-2};
+* AM2302_ERROR_READ_FREQ  {-3};
 
 
 # License
