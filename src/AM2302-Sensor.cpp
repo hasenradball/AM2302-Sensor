@@ -14,7 +14,7 @@
  * 
  * @param pin Pin for AM2302 sensor
  */
-AM2302::AM2302_Sensor::AM2302_Sensor(uint8_t pin) : _pin{pin}
+AM2302::AM2302_Sensor::AM2302_Sensor(uint8_t pin) : _millis_last_read{0}, _pin{pin}
 {}
 
 /**
@@ -28,10 +28,12 @@ bool AM2302::AM2302_Sensor::begin() {
    // required delay() for a secure sensor check,
    // if you reset the mcu very fast one after another
    auto tic{millis()};
-   while ((millis() - tic) < 2000U) {
+   while ( millis() - tic < READ_FREQUENCY ) {
       yield();
    }
-   if (read() == AM2302_READ_OK) {
+   auto status{read()};
+   _millis_last_read = millis();
+   if (status == AM2302_READ_OK) {
       return true;
    }
    else {
@@ -41,6 +43,11 @@ bool AM2302::AM2302_Sensor::begin() {
 
 
 int8_t AM2302::AM2302_Sensor::read() {
+   // check read frequency
+   if ( millis() - _millis_last_read < READ_FREQUENCY) {
+      return AM2302_ERROR_READ_FREQ;
+   }
+   _millis_last_read = millis();
    // *****************************
    //  === send start sequence ===
    // ****************************
