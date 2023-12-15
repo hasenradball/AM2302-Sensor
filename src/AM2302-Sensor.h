@@ -18,9 +18,11 @@ namespace AM2302 {
    constexpr int8_t AM2302_READ_OK          {0};
    constexpr int8_t AM2302_ERROR_CHECKSUM   {-1};
    constexpr int8_t AM2302_ERROR_TIMEOUT    {-2};
+   constexpr int8_t AM2302_ERROR_READ_FREQ  {-3};
 
    // define timeout in 100 µs
-   constexpr uint8_t READ_TIMEOUT	{100U};
+   constexpr uint8_t READ_TIMEOUT         {100U};
+   constexpr uint16_t READ_FREQUENCY      {2000U};
 
    class AM2302_Sensor {
 
@@ -32,6 +34,7 @@ namespace AM2302 {
          float get_Humidity() const {return _hum * 0.1F;}
 
       private:
+         unsigned long _millis_last_read;
          uint16_t _hum {0};
          int16_t _temp {0};
          uint8_t _pin;
