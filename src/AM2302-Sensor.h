@@ -22,6 +22,8 @@ namespace AM2302 {
 
    // define timeout in 100 µs
    constexpr uint8_t READ_TIMEOUT         {100U};
+   
+   // define maximum sensor read frequency in milliseconds (2 s)
    constexpr uint16_t READ_FREQUENCY      {2000U};
 
    class AM2302_Sensor {
