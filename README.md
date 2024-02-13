@@ -63,7 +63,7 @@ void setup() {
   Serial.println(am2302.get_Temperature());
 
   Serial.print("Humidity:    ");
-  Serial.println(am2302.get_Hunidity());
+  Serial.println(am2302.get_Humidity());
 }
 
 ```
