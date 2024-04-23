@@ -1,5 +1,5 @@
 /*
-*	Arduino_Nano_Sensor_Array_Example.ino
+*	Wemos_D1_mini_Sensor_Array_Example.ino
 *
 *	Author: Frank Häfele
 *	Date:	23.04.2024
@@ -11,21 +11,19 @@
 
 #include <Arduino.h>
 #include <AM2302-Sensor.h>
+#include <ESP8266WiFi.h>
 
-constexpr int SIZE {3};
 
-constexpr int PIN_1{4};
-constexpr int PIN_2{11};
-constexpr int PIN_3{12};
-
-// Create Sensor Object array
-AM2302::AM2302_Sensor sensor_arr[SIZE] = {
-  AM2302::AM2302_Sensor{PIN_1},
-  AM2302::AM2302_Sensor{PIN_2},
-  AM2302::AM2302_Sensor{PIN_3}
+// Create Sensor Object array with std:array
+std::array<AM2302::AM2302_Sensor, 3> sensor_arr{
+  AM2302::AM2302_Sensor{4},
+  AM2302::AM2302_Sensor{5},
+  AM2302::AM2302_Sensor{0}
 };
 
+
 void setup() {
+  WiFi.mode(WIFI_OFF);
   // put your setup code here, to run once:
   Serial.begin(115200);
   while(!Serial) {
@@ -34,7 +32,7 @@ void setup() {
   Serial.print(">>> Test Sensor Array of AM2302 (DHT22) Sensors <<<\n\n");
   delay(5000);
 
-  for (size_t i = 0; i < SIZE; ++i) {
+  for (size_t i = 0; i < sensor_arr.size(); ++i) {
     Serial.print("Sensor ");
     Serial.print(i);
     Serial.print(" available - ");
@@ -46,18 +44,25 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  
   Serial.print("\tSensor Status : ");
-  for (size_t i = 0; i < SIZE; ++i) {
+  for (size_t i = 0; i < sensor_arr.size(); ++i) {
     Serial.print(sensor_arr[i].read());
     Serial.print("\t");
+    //Serial.print("\tTemperature: ");
+    //Serial.print(sensor_arr[i].get_Temperature());
+    //Serial.println(" °C");
+    //Serial.print("\tHumidity:    ");
+    //Serial.print(sensor_arr[i].get_Humidity());
+    //Serial.println(" %\n\n");
   }
   Serial.print("\n\tTemperature   : ");
-  for (size_t i = 0; i < SIZE; ++i) {
+  for (size_t i = 0; i < sensor_arr.size(); ++i) {
     Serial.print(sensor_arr[i].get_Temperature());
     Serial.print("\t");
   }
   Serial.print("\n\tHumidity      : ");
-  for (size_t i = 0; i < SIZE; ++i) {
+  for (size_t i = 0; i < sensor_arr.size(); ++i) {
     Serial.print(sensor_arr[i].get_Humidity());
     Serial.print("\t");
   }
