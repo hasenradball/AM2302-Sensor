@@ -30,4 +30,4 @@ jobs:
 
       - name: Compile code
         run: |
-          arduino-cli compile --fqbn esp8266:esp8266:mini_d1 ./examples/Wemos_D1_mini_AM2302_Sensor_Array_Example
+          arduino-cli compile --fqbn esp8266:esp8266:d1_mini ./examples/Wemos_D1_mini_AM2302_Sensor_Array_Example/Wemos_D1_mini_AM2302_Sensor_Array_Example.ino
