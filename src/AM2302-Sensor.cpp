@@ -41,8 +41,37 @@ bool AM2302::AM2302_Sensor::begin() {
    }
 }
 
-
+/**
+ * @brief read functionality
+ * 
+ * @return sensor status
+*/
 int8_t AM2302::AM2302_Sensor::read() {
+   auto status{read_sensor()};
+   
+   if (status == AM2302_READ_OK) {
+      // return status immidiately
+      return status;
+   }
+   else if (status == AM2302_ERROR_READ_FREQ) {
+      return status;
+   }
+   else if (status == AM2302_ERROR_TIMEOUT) {
+      // reset Temperature and Humidity
+      return status;
+   }
+   else if (status == AM2302_ERROR_CHECKSUM) {
+      // not clear now
+      return status;
+   }
+}
+
+/**
+ * @brief initiate start sequence and read sensor data
+ * 
+ * @return sensor status
+*/
+int8_t AM2302::AM2302_Sensor::read_sensor() {
    // check read frequency
    if ( millis() - _millis_last_read < READ_FREQUENCY) {
       return AM2302_ERROR_READ_FREQ;
@@ -175,6 +204,26 @@ int8_t AM2302::AM2302_Sensor::read_sensor_data(uint8_t *buffer, uint8_t size) {
       }
    }
    return AM2302_READ_OK;
+}
+
+/**
+ * @brief get Sensor State in human readable manner
+ * 
+ * @return sensor state
+*/
+const char * AM2302::AM2302_Sensor::get_sensorState(int8_t state) const {
+   if(state == AM2302_READ_OK) {
+      return AM2302_STATE_OK;
+   }
+   else if(state == AM2302_ERROR_CHECKSUM) {
+      return AM2302_STATE_ERR_CKSUM;
+   }
+   else if(state == AM2302_ERROR_TIMEOUT) {
+      return AM2302_STATE_ERR_TIMEOUT;
+   }
+   else if(state == AM2302_ERROR_READ_FREQ) {
+      return AM2302_STATE_ERR_READ_FREQ;
+   }
 }
 
 /**
