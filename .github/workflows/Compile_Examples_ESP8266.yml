@@ -1,0 +1,29 @@
+name: Compile Arduino Code
+
+on: [push, pull_request]
+
+jobs:
+  build-arduino:
+    runs-on: ubuntu-latest
+    if: contains(github.event.head_commit.message, '[arduino]')
+    steps:
+      # Schritte zum Kompilieren von Arduino-Beispielen
+
+    build-esp8266:
+      runs-on: ubuntu-latest
+      if: contains(github.event.head_commit.message, '[esp8266]')
+      steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+  
+      - name: Install Arduino CLI
+        uses: arduino/setup-arduino-cli@v1
+  
+      - name: Install ESP8266 platform
+        run: |
+          arduino-cli core update-index
+          arduino-cli core install esp8266:esp8266
+  
+      - name: Compile code
+        run: |
+          arduino-cli compile --fqbn esp8266:esp8266:nodemcuv2 https://github.com/hasenradball/AM2302-Sensor
