@@ -50,7 +50,7 @@ int8_t AM2302::AM2302_Sensor::read() {
    auto status{read_sensor()};
    
    if (status == AM2302_READ_OK) {
-      // return status immidiately
+      // return status immediately
       return status;
    }
    else if (status == AM2302_ERROR_READ_FREQ) {
