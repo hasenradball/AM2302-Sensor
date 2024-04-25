@@ -13,16 +13,13 @@
 #include <AM2302-Sensor.h>
 
 constexpr int SIZE {3};
+constexpr int PIN[SIZE] = {7, 8, 9};
 
-constexpr int PIN_1{4};
-constexpr int PIN_2{11};
-constexpr int PIN_3{12};
-
-// Create Sensor Object array
+// Create Sensor Object array with std:array
 AM2302::AM2302_Sensor sensor_arr[SIZE] = {
-  AM2302::AM2302_Sensor{PIN_1},
-  AM2302::AM2302_Sensor{PIN_2},
-  AM2302::AM2302_Sensor{PIN_3}
+  AM2302::AM2302_Sensor{PIN[0]},
+  AM2302::AM2302_Sensor{PIN[1]},
+  AM2302::AM2302_Sensor{PIN[2]},
 };
 
 void setup() {
@@ -46,9 +43,10 @@ void setup() {
 
 void loop() {
   // put your main code here, to run repeatedly:
+  
   Serial.print("\tSensor Status : ");
   for (size_t i = 0; i < SIZE; ++i) {
-    Serial.print(sensor_arr[i].read());
+    Serial.print(sensor_arr[i].get_sensorState(sensor_arr[i].read()));
     Serial.print("\t");
   }
   Serial.print("\n\tTemperature   : ");

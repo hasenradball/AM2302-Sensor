@@ -219,11 +219,22 @@ const char * AM2302::AM2302_Sensor::get_sensorState(int8_t state) const {
       return AM2302_STATE_ERR_CKSUM;
    }
    else if(state == AM2302_ERROR_TIMEOUT) {
+      resetData();
       return AM2302_STATE_ERR_TIMEOUT;
    }
    else if(state == AM2302_ERROR_READ_FREQ) {
       return AM2302_STATE_ERR_READ_FREQ;
    }
+}
+
+/**
+ * @brief reset temperature and humidity data
+ * 
+ */
+void AM2302::AM2302_Sensor::resetData() {
+   // reset tem to -255 and hum to 0 as indication
+   _temp = -2550;
+   _hum = 0;
 }
 
 /**

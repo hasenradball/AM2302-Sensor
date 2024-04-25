@@ -16,9 +16,9 @@
 namespace AM2302 {
 
    constexpr const char * AM2302_STATE_OK{"OK"};
-   constexpr const char * AM2302_STATE_ERR_CKSUM{"Error Checksum"};
-   constexpr const char * AM2302_STATE_ERR_TIMEOUT{"Error Timeout"};
-   constexpr const char * AM2302_STATE_ERR_READ_FREQ{"Error Read Frequency"};
+   constexpr const char * AM2302_STATE_ERR_CKSUM{"Error: Checksum"};
+   constexpr const char * AM2302_STATE_ERR_TIMEOUT{"Error: Timeout"};
+   constexpr const char * AM2302_STATE_ERR_READ_FREQ{"Error: Read Frequency"};
 
    constexpr int8_t AM2302_READ_OK          {0};
    constexpr int8_t AM2302_ERROR_CHECKSUM   {-1};
@@ -50,6 +50,7 @@ namespace AM2302 {
          int8_t await_state(uint8_t state);
          int8_t read_sensor();
          int8_t read_sensor_data(uint8_t *buffer, uint8_t const size);
+         void resetData();
    };
 }
 

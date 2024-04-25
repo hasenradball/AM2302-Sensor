@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+
+# Mac related files
+.DS_Store
