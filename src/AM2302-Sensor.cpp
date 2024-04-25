@@ -61,7 +61,7 @@ int8_t AM2302::AM2302_Sensor::read() {
       return status;
    }
    else if (status == AM2302_ERROR_CHECKSUM) {
-      // notthing to do
+      // nothing to do
       return status;
    }
 }
