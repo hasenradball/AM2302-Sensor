@@ -57,11 +57,11 @@ int8_t AM2302::AM2302_Sensor::read() {
       return status;
    }
    else if (status == AM2302_ERROR_TIMEOUT) {
-      // reset Temperature and Humidity
+      resetData();
       return status;
    }
    else if (status == AM2302_ERROR_CHECKSUM) {
-      // not clear now
+      // notthing to do
       return status;
    }
 }
@@ -219,7 +219,6 @@ const char * AM2302::AM2302_Sensor::get_sensorState(int8_t state) const {
       return AM2302_STATE_ERR_CKSUM;
    }
    else if(state == AM2302_ERROR_TIMEOUT) {
-      resetData();
       return AM2302_STATE_ERR_TIMEOUT;
    }
    else if(state == AM2302_ERROR_READ_FREQ) {
