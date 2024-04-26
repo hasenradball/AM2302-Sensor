@@ -47,7 +47,7 @@ void loop() {
   
   Serial.print("\tSensor Status : ");
   for (size_t i = 0; i < sensor_arr.size(); ++i) {
-    Serial.print(sensor_arr[i].get_sensorState(sensor_arr[i].read()));
+    Serial.print(AM2302::AM2302_Sensor::get_sensorState(sensor_arr[i].read()));
     Serial.print("\t");
   }
   Serial.print("\n\tTemperature   : ");
