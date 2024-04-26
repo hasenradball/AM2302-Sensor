@@ -49,21 +49,10 @@ bool AM2302::AM2302_Sensor::begin() {
 int8_t AM2302::AM2302_Sensor::read() {
    auto status{read_sensor()};
    
-   if (status == AM2302_READ_OK) {
-      // return status immediately
-      return status;
-   }
-   else if (status == AM2302_ERROR_READ_FREQ) {
-      return status;
-   }
-   else if (status == AM2302_ERROR_TIMEOUT) {
+   if (status == AM2302_ERROR_TIMEOUT) {
       resetData();
-      return status;
    }
-   else if (status == AM2302_ERROR_CHECKSUM) {
-      // nothing to do
-      return status;
-   }
+   return status;
 }
 
 /**
@@ -211,7 +200,7 @@ int8_t AM2302::AM2302_Sensor::read_sensor_data(uint8_t *buffer, uint8_t size) {
  * 
  * @return sensor state
 */
-const char * AM2302::AM2302_Sensor::get_sensorState(int8_t state) const {
+const char * AM2302::AM2302_Sensor::get_sensorState(int8_t state) {
    if(state == AM2302_READ_OK) {
       return AM2302_STATE_OK;
    }
@@ -221,7 +210,7 @@ const char * AM2302::AM2302_Sensor::get_sensorState(int8_t state) const {
    else if(state == AM2302_ERROR_TIMEOUT) {
       return AM2302_STATE_ERR_TIMEOUT;
    }
-   else if(state == AM2302_ERROR_READ_FREQ) {
+   else {
       return AM2302_STATE_ERR_READ_FREQ;
    }
 }
