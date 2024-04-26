@@ -57,7 +57,7 @@ void setup() {
 
   auto status = am2302.read();
   Serial.print("\n\nstatus of sensor read(): ");
-  Serial.println(status);
+  Serial.println(AM2302::AM2302_Sensor::get_sensorState(status));
 
   Serial.print("Temperature: ");
   Serial.println(am2302.get_Temperature());

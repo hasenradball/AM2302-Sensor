@@ -2,7 +2,7 @@
 *	Wemos_D1_mini_Sensor_Array_Example.ino
 *
 *	Author: Frank Häfele
-*	Date:	23.04.2024
+*	Date:	25.04.2024
 *
 *	Objective:
     Measure sensor data of AM2302-Sensor-Array with Arduino IDE.
@@ -47,14 +47,8 @@ void loop() {
   
   Serial.print("\tSensor Status : ");
   for (size_t i = 0; i < sensor_arr.size(); ++i) {
-    Serial.print(sensor_arr[i].read());
+    Serial.print(AM2302::AM2302_Sensor::get_sensorState(sensor_arr[i].read()));
     Serial.print("\t");
-    //Serial.print("\tTemperature: ");
-    //Serial.print(sensor_arr[i].get_Temperature());
-    //Serial.println(" °C");
-    //Serial.print("\tHumidity:    ");
-    //Serial.print(sensor_arr[i].get_Humidity());
-    //Serial.println(" %\n\n");
   }
   Serial.print("\n\tTemperature   : ");
   for (size_t i = 0; i < sensor_arr.size(); ++i) {
