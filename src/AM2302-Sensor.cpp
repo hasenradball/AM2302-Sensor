@@ -42,7 +42,7 @@ bool AM2302::AM2302_Sensor::begin() {
 }
 
 /**
- * @brief read functionality
+ * @brief read function call of read_sensor()
  * 
  * @return sensor status
 */
@@ -56,7 +56,7 @@ int8_t AM2302::AM2302_Sensor::read() {
 }
 
 /**
- * @brief initiate start sequence and read sensor data
+ * @brief initiate start sequence setup pins and read sensor data
  * 
  * @return sensor status
 */
@@ -162,10 +162,10 @@ int8_t AM2302::AM2302_Sensor::await_state(uint8_t state) {
 }
 
 /**
- * @brief read sensor data
+ * @brief read 40 bit of sensor data
  * 
- * @param buffer data buffer of 40 bit
- * @param size of buffer => 40
+ * @param buffer data buffer for 40 bit
+ * @param size of buffer => 5 Byte
  * @return int8_t 
  */
 int8_t AM2302::AM2302_Sensor::read_sensor_data(uint8_t *buffer, uint8_t size) {
@@ -198,7 +198,7 @@ int8_t AM2302::AM2302_Sensor::read_sensor_data(uint8_t *buffer, uint8_t size) {
 /**
  * @brief get Sensor State in human readable manner
  * 
- * @return sensor state
+ * @return sensor state : OK, Checksum Error or Timeout Error
 */
 const char * AM2302::AM2302_Sensor::get_sensorState(int8_t state) {
    if(state == AM2302_READ_OK) {
