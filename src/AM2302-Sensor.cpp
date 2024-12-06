@@ -1,28 +1,16 @@
-/*
-*	AM2302-Sensor.cpp
-*
-*	Author: Frank Häfele
-*	Date:	21.11.2023
-*
-*	Object: Measure Sensor Data of AM2302-Sensor
-*
-*/
+/**
+ * @file    AM2302-Sensor.h
+ * @author  Frank Häfele
+ * @date    21.11.2023
+ * @version 1.4.0
+ * @brief   Measure Temperature and Humidity of AM2302-Sensor
+ */
+
 #include <AM2302-Sensor.h>
 
-/**
- * @brief Construct a new am2302::am2302 sensor::am2302 sensor object
- * 
- * @param pin Pin for AM2302 sensor
- */
 AM2302::AM2302_Sensor::AM2302_Sensor(uint8_t pin) : _millis_last_read{0}, _pin{pin}
 {}
 
-/**
- * @brief begin function setup pin and run sensor check.
- * 
- * @return true if sensor check is successful.
- * @return false if sensor check failed.
- */
 bool AM2302::AM2302_Sensor::begin() {
    pinMode(_pin, INPUT_PULLUP);
    // required delay() for a secure sensor check,
@@ -41,11 +29,6 @@ bool AM2302::AM2302_Sensor::begin() {
    }
 }
 
-/**
- * @brief read function call of read_sensor()
- * 
- * @return sensor status
-*/
 int8_t AM2302::AM2302_Sensor::read() {
    auto status{read_sensor()};
    
@@ -55,11 +38,6 @@ int8_t AM2302::AM2302_Sensor::read() {
    return status;
 }
 
-/**
- * @brief initiate start sequence setup pins and read sensor data
- * 
- * @return sensor status
-*/
 int8_t AM2302::AM2302_Sensor::read_sensor() {
    // check read frequency
    if ( millis() - _millis_last_read < READ_FREQUENCY) {
@@ -134,12 +112,6 @@ int8_t AM2302::AM2302_Sensor::read_sensor() {
    }
 }
 
-/**
- * @brief wait for a specific pin state
- * 
- * @param state state to wait for
- * @return int8_t status
- */
 int8_t AM2302::AM2302_Sensor::await_state(uint8_t state) {
    uint8_t wait_counter{0}, state_counter{0};
    // count wait for state time
@@ -161,13 +133,6 @@ int8_t AM2302::AM2302_Sensor::await_state(uint8_t state) {
    return (state_counter > wait_counter);
 }
 
-/**
- * @brief read 40 bit of sensor data
- * 
- * @param buffer data buffer for 40 bit
- * @param size of buffer => 5 Byte
- * @return int8_t 
- */
 int8_t AM2302::AM2302_Sensor::read_sensor_data(uint8_t *buffer, uint8_t size) {
    for (uint8_t i = 0; i < size; ++i) {
       for (uint8_t bit = 0; bit < 8U; ++bit) {
@@ -195,11 +160,6 @@ int8_t AM2302::AM2302_Sensor::read_sensor_data(uint8_t *buffer, uint8_t size) {
    return AM2302_READ_OK;
 }
 
-/**
- * @brief get Sensor State in human readable manner
- * 
- * @return sensor state : OK, Checksum Error or Timeout Error
-*/
 const char * AM2302::AM2302_Sensor::get_sensorState(int8_t state) {
    if(state == AM2302_READ_OK) {
       return AM2302_STATE_OK;
@@ -215,21 +175,12 @@ const char * AM2302::AM2302_Sensor::get_sensorState(int8_t state) {
    }
 }
 
-/**
- * @brief reset temperature and humidity data
- * 
- */
 void AM2302::AM2302_Sensor::resetData() {
    // reset tem to -255 and hum to 0 as indication
    _temp = -2550;
    _hum = 0;
 }
 
-/**
- * @brief helper function to print byte as bit
- * 
- * @param value byte with 8 bits
- */
 void AM2302_Tools::print_byte_as_bit(char value) {
    for (int i = 7; i >= 0; --i) {
       char c = (value & (1 << i)) ? '1' : '0';
