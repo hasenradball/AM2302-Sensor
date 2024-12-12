@@ -3,7 +3,7 @@ name: Generate Doxygen Documentation
 on:
   push:
     branches:
-      - main  # Passe den Branch an, für den die Dokumentation generiert werden soll
+      - master  # Passe den Branch an, für den die Dokumentation generiert werden soll
 
 jobs:
   build-docs:
