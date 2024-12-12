@@ -1,0 +1,86 @@
+\href{https://github.com/hasenradball/AM2302-Sensor/actions/workflows/spell_checker.yml}{\texttt{ }} \href{https://github.com/hasenradball/AM2302-Sensor/actions/workflows/compile_examples.yml}{\texttt{ }}
+
+Sensor Library for the AM2302 Sensor (aka DHT22) from ASAIR.~\newline
+ This Library is a controller independent library for reading the AM2302 Sensor also known as DHT22.
+
+\hypertarget{md__r_e_a_d_m_e_autotoc_md1}{}\doxysection{Contents}\label{md__r_e_a_d_m_e_autotoc_md1}
+
+\begin{DoxyItemize}
+\item \href{\#sensor-documentation}{\texttt{ Sensor Documentation}}
+\item \href{\#library-usage}{\texttt{ AM2302 Library Usage}}
+\item \href{\#license}{\texttt{ License}}
+\item \href{\#helpful-links}{\texttt{ Helpful Links}}
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md2}{}\doxysection{Sensor Documentation}\label{md__r_e_a_d_m_e_autotoc_md2}
+One small Docu you will find in the docs folder of this repo.
+
+The actual manufacturer page is linked here\+: \href{http://www.aosong.com/en/products-22.html}{\texttt{ ASAIR AM2302}}.
+
+The most detailed datasheet you will find here\+: \href{http://akizukidenshi.com/download/ds/aosong/AM2302.pdf}{\texttt{ AM2302 Product Manual}}
+
+{\bfseries{REMARK}}\+:~\newline
+ Against the most documentations and datasheets the following Pin description is correct (from left to right)\+:
+
+
+\begin{DoxyItemize}
+\item Pin1\+: VDD (3,3...5 V)
+\item Pin2\+: SDA (Serial Data, two way)
+\item Pin3\+: GND
+\item PIN4\+: GND
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md3}{}\doxysection{Library Usage}\label{md__r_e_a_d_m_e_autotoc_md3}
+\hypertarget{md__r_e_a_d_m_e_autotoc_md4}{}\doxysubsection{Controllers}\label{md__r_e_a_d_m_e_autotoc_md4}
+The library is intended to be used on each microcontroller for Example\+:~\newline
+
+\begin{DoxyItemize}
+\item Arnuino Nano
+\item Arduino Nano 33 IOT
+\item ESP8266
+\item ESP32
+\item etc ...
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md5}{}\doxysubsection{Usage the AM2302-\/\+Sensor library in the Code}\label{md__r_e_a_d_m_e_autotoc_md5}
+Include the library
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#include <AM2302-\/Sensor.h>}
+
+\end{DoxyCode}
+
+
+The library use namespaces, so the object can be instantiated and used by\+:
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{AM2302::AM2302\_Sensor am2302\{PIN\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{void setup() \{}
+\DoxyCodeLine{  am2302.begin();}
+\DoxyCodeLine{}
+\DoxyCodeLine{  auto status = am2302.read();}
+\DoxyCodeLine{  Serial.print("{}\(\backslash\)n\(\backslash\)nstatus of sensor read(): "{});}
+\DoxyCodeLine{  Serial.println(AM2302::AM2302\_Sensor::get\_sensorState(status));}
+\DoxyCodeLine{}
+\DoxyCodeLine{  Serial.print("{}Temperature: "{});}
+\DoxyCodeLine{  Serial.println(am2302.get\_Temperature());}
+\DoxyCodeLine{}
+\DoxyCodeLine{  Serial.print("{}Humidity:    "{});}
+\DoxyCodeLine{  Serial.println(am2302.get\_Humidity());}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ \hypertarget{md__r_e_a_d_m_e_autotoc_md6}{}\doxysubsection{Status Codes of AM2302-\/\+Sensor}\label{md__r_e_a_d_m_e_autotoc_md6}
+The following status codes exists\+:
+
+
+\begin{DoxyItemize}
+\item AM2302\+\_\+\+READ\+\_\+\+OK \{0\};
+\item AM2302\+\_\+\+ERROR\+\_\+\+CHECKSUM \{-\/1\};
+\item AM2302\+\_\+\+ERROR\+\_\+\+TIMEOUT \{-\/2\};
+\item AM2302\+\_\+\+ERROR\+\_\+\+READ\+\_\+\+FREQ \{-\/3\};
+\end{DoxyItemize}\hypertarget{md__r_e_a_d_m_e_autotoc_md7}{}\doxysection{License}\label{md__r_e_a_d_m_e_autotoc_md7}
+This library is licensed under MIT Licence.
+
+\href{https://github.com/hasenradball/AM2302-Sensor/blob/master/LICENSE}{\texttt{ AM2302-\/\+Sensor License}}\hypertarget{md__r_e_a_d_m_e_autotoc_md8}{}\doxysection{Helpful Links}\label{md__r_e_a_d_m_e_autotoc_md8}
+
+\begin{DoxyItemize}
+\item \href{https://esp8266-01-adapter.de}{\texttt{ ESP8266-\/01-\/\+Adapter}} 
+\end{DoxyItemize}

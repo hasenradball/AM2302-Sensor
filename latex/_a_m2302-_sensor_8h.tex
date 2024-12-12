@@ -1,0 +1,83 @@
+\hypertarget{_a_m2302-_sensor_8h}{}\doxysection{src/\+AM2302-\/\+Sensor.h File Reference}
+\label{_a_m2302-_sensor_8h}\index{src/AM2302-\/Sensor.h@{src/AM2302-\/Sensor.h}}
+
+
+Measure Temperature and Humidity of AM2302-\/\+Sensor.  
+
+
+{\ttfamily \#include $<$Arduino.\+h$>$}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_a_m2302_1_1_a_m2302___sensor}{AM2302\+::\+AM2302\+\_\+\+Sensor}}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{_a_m2302-_sensor_8h_adae50a776d9e76aed0aba22c8ca5db5e}{AM2302\+\_\+\+Tools\+::print\+\_\+byte\+\_\+as\+\_\+bit}} (char value)
+\begin{DoxyCompactList}\small\item\em helper function to print byte as bits \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{_a_m2302-_sensor_8h_aba689367f84c59268c75c431b6989b63}\label{_a_m2302-_sensor_8h_aba689367f84c59268c75c431b6989b63}} 
+constexpr const char $\ast$ {\bfseries AM2302\+::\+AM2302\+\_\+\+STATE\+\_\+\+OK} \{\char`\"{}OK\char`\"{}\}
+\item 
+\mbox{\Hypertarget{_a_m2302-_sensor_8h_abefa6643c3697542e964698be6d182a5}\label{_a_m2302-_sensor_8h_abefa6643c3697542e964698be6d182a5}} 
+constexpr const char $\ast$ {\bfseries AM2302\+::\+AM2302\+\_\+\+STATE\+\_\+\+ERR\+\_\+\+CKSUM} \{\char`\"{}Error\+: Checksum\char`\"{}\}
+\item 
+\mbox{\Hypertarget{_a_m2302-_sensor_8h_abbbeea6292de46824a3b8001160f324a}\label{_a_m2302-_sensor_8h_abbbeea6292de46824a3b8001160f324a}} 
+constexpr const char $\ast$ {\bfseries AM2302\+::\+AM2302\+\_\+\+STATE\+\_\+\+ERR\+\_\+\+TIMEOUT} \{\char`\"{}Error\+: Timeout\char`\"{}\}
+\item 
+\mbox{\Hypertarget{_a_m2302-_sensor_8h_ada4dd86410429bf79e4b9e2c255cb122}\label{_a_m2302-_sensor_8h_ada4dd86410429bf79e4b9e2c255cb122}} 
+constexpr const char $\ast$ {\bfseries AM2302\+::\+AM2302\+\_\+\+STATE\+\_\+\+ERR\+\_\+\+READ\+\_\+\+FREQ} \{\char`\"{}Error\+: Read Frequency\char`\"{}\}
+\item 
+\mbox{\Hypertarget{_a_m2302-_sensor_8h_aea40c35e8560d968a13f0be2a8f82e07}\label{_a_m2302-_sensor_8h_aea40c35e8560d968a13f0be2a8f82e07}} 
+constexpr int8\+\_\+t {\bfseries AM2302\+::\+AM2302\+\_\+\+READ\+\_\+\+OK} \{0\}
+\item 
+\mbox{\Hypertarget{_a_m2302-_sensor_8h_a48b50c6e2ad9bbe9cb4ded65c2e50e73}\label{_a_m2302-_sensor_8h_a48b50c6e2ad9bbe9cb4ded65c2e50e73}} 
+constexpr int8\+\_\+t {\bfseries AM2302\+::\+AM2302\+\_\+\+ERROR\+\_\+\+CHECKSUM} \{-\/1\}
+\item 
+\mbox{\Hypertarget{_a_m2302-_sensor_8h_ab735a0398402be7f8a177295b0a38141}\label{_a_m2302-_sensor_8h_ab735a0398402be7f8a177295b0a38141}} 
+constexpr int8\+\_\+t {\bfseries AM2302\+::\+AM2302\+\_\+\+ERROR\+\_\+\+TIMEOUT} \{-\/2\}
+\item 
+\mbox{\Hypertarget{_a_m2302-_sensor_8h_a2a43602b7860ea10a698667e190e233d}\label{_a_m2302-_sensor_8h_a2a43602b7860ea10a698667e190e233d}} 
+constexpr int8\+\_\+t {\bfseries AM2302\+::\+AM2302\+\_\+\+ERROR\+\_\+\+READ\+\_\+\+FREQ} \{-\/3\}
+\item 
+\mbox{\Hypertarget{_a_m2302-_sensor_8h_ad4e1ce2e9c44772cd688e567a1c840dd}\label{_a_m2302-_sensor_8h_ad4e1ce2e9c44772cd688e567a1c840dd}} 
+constexpr uint8\+\_\+t {\bfseries AM2302\+::\+READ\+\_\+\+TIMEOUT} \{100U\}
+\item 
+\mbox{\Hypertarget{_a_m2302-_sensor_8h_a752d73eb17268214a97e4147ef5c0c4b}\label{_a_m2302-_sensor_8h_a752d73eb17268214a97e4147ef5c0c4b}} 
+constexpr uint16\+\_\+t {\bfseries AM2302\+::\+READ\+\_\+\+FREQUENCY} \{2000U\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Measure Temperature and Humidity of AM2302-\/\+Sensor. 
+
+\begin{DoxyAuthor}{Author}
+Frank Häfele 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+21.\+11.\+2023 
+\end{DoxyDate}
+\begin{DoxyVersion}{Version}
+1.\+4.\+0 
+\end{DoxyVersion}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{_a_m2302-_sensor_8h_adae50a776d9e76aed0aba22c8ca5db5e}\label{_a_m2302-_sensor_8h_adae50a776d9e76aed0aba22c8ca5db5e}} 
+\index{AM2302-\/Sensor.h@{AM2302-\/Sensor.h}!print\_byte\_as\_bit@{print\_byte\_as\_bit}}
+\index{print\_byte\_as\_bit@{print\_byte\_as\_bit}!AM2302-\/Sensor.h@{AM2302-\/Sensor.h}}
+\doxysubsubsection{\texorpdfstring{print\_byte\_as\_bit()}{print\_byte\_as\_bit()}}
+{\footnotesize\ttfamily void AM2302\+\_\+\+Tools\+::print\+\_\+byte\+\_\+as\+\_\+bit (\begin{DoxyParamCaption}\item[{char}]{value }\end{DoxyParamCaption})}
+
+
+
+helper function to print byte as bits 
+
+
+\begin{DoxyParams}{Parameters}
+{\em value} & byte with 8 bits \\
+\hline
+\end{DoxyParams}
