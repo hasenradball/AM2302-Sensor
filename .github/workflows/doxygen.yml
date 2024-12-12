@@ -1,0 +1,35 @@
+name: Generate Doxygen Documentation
+
+on:
+  push:
+    branches:
+      - main  # Passe den Branch an, für den die Dokumentation generiert werden soll
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout des Repositorys
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Installiere Doxygen
+      - name: Install Doxygen
+        run: sudo apt-get update && sudo apt-get install -y doxygen
+
+      # Optional: Installiere weitere Tools, falls notwendig (z.B. Graphviz für Diagramme)
+      - name: Install Graphviz
+        run: sudo apt-get install -y graphviz
+
+      # Generiere die Dokumentation
+      - name: Generate Documentation
+        run: doxygen Doxyfile
+
+      # Dokumentation deployen (z.B. in den gh-pages Branch)
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs
+
