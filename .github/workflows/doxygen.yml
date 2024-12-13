@@ -14,17 +14,23 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      # Installiere Doxygen
+      # Installiere Doxygen + graphviz
       - name: Install Doxygen
-        run: sudo apt-get update && sudo apt-get install -y doxygen
-
-      # Optional: Installiere weitere Tools, falls notwendig (z.B. Graphviz für Diagramme)
-      - name: Install Graphviz
-        run: sudo apt-get install -y graphviz
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y doxygen graphviz
 
       # Generiere die Dokumentation
       - name: Generate Documentation
         run: doxygen Doxyfile
+
+      # Prüfen, ob der Ordner erstellt wurde
+      - name: Verify Domcumentation
+        run: ls -la docs
+
+      # Disable Jekyll
+      - name: Disable Jekyll
+        run: touch docs/.nojekyll
 
       # Dokumentation deployen (z.B. in den gh-pages Branch)
       - name: Deploy to GitHub Pages
