@@ -25,8 +25,10 @@ jobs:
         run: doxygen Doxyfile
 
       # Prüfen, ob der Ordner erstellt wurde
-      - name: Verify Domcumentation
-        run: ls -la docs
+      - name: Verify Documentation and copy pictures to html
+        run: |
+          ls -la docs
+          cp docs/*.jpg docs/html
 
       # Disable Jekyll
       - name: Disable Jekyll
