@@ -28,7 +28,7 @@ jobs:
       - name: Verify Documentation and copy pictures to html
         run: |
           ls -la docs
-          cp docs/*.jpg docs/html
+          cp docs/*.jpg docs/*.png docs/html
 
       # Disable Jekyll
       - name: Disable Jekyll
