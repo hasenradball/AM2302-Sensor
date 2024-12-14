@@ -30,7 +30,7 @@ jobs:
 
       # Disable Jekyll
       - name: Disable Jekyll
-        run: touch docs/.nojekyll
+        run: touch .nojekyll
 
       # Dokumentation deployen (z.B. in den gh-pages Branch)
       - name: Deploy to GitHub Pages
