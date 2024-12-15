@@ -1,6 +1,7 @@
 # AM2302-Sensor Library
 [![Spell Check](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/spell_checker.yml/badge.svg)](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/spell_checker.yml)
 [![Compile Examples](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/compile_examples.yml/badge.svg)](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/compile_examples.yml)
+[![Generate Doxygen Documentation](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/doxygen.yml/badge.svg)](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/doxygen.yml)
 
 Sensor Library for the AM2302 Sensor (aka DHT22) from ASAIR.<br>
 This Library is a controller independent library for reading the AM2302 Sensor also known as DHT22.
