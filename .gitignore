@@ -35,6 +35,6 @@
 .DS_Store
 
 # doxy files
-doxygen/html
-doxygen/latex
-!doxygen/latex/refman.pdf
+docs/html/*
+docs/latex/*
+!docs/latex/refman.pdf

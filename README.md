@@ -20,7 +20,9 @@ One small Docu you will find in the docs folder of this repo.
 
 The actual manufacturer page is linked here: [ASAIR AM2302](http://www.aosong.com/en/products-22.html).
 
-The most detailed datasheet you will find here: [AM2302 Product Manual](http://akizukidenshi.com/download/ds/aosong/AM2302.pdf)
+The most detailed datasheet you will find here: [AM2302 Product Manual](http://akizukidenshi.com/download/ds/aosong/AM2302.pdf).
+
+The Sensor-Library documentation you will find in the provided [refman.pdf](./docs/latex/refman.pdf), or under github-pages [github.io](https://hasenradball.github.io/AM2302-Sensor).
 
 
 **REMARK**:<br>
