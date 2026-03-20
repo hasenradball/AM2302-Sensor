@@ -8,6 +8,32 @@
 
 #include <AM2302-Sensor.h>
 
+namespace {
+   constexpr int16_t MIN_TEMPERATURE_RAW{-400};
+   constexpr int16_t MAX_TEMPERATURE_RAW{800};
+
+   bool is_valid_temperature_raw(int16_t value) {
+      return (value >= MIN_TEMPERATURE_RAW) && (value <= MAX_TEMPERATURE_RAW);
+   }
+
+   int16_t decode_temperature_raw(uint8_t msb, uint8_t lsb) {
+      const uint16_t raw = static_cast<uint16_t>((msb << 8) | lsb);
+      const int16_t sign_magnitude = -static_cast<int16_t>(raw & 0x7FFFU);
+      const int16_t twos_complement = static_cast<int16_t>(raw);
+
+      if (!(raw & 0x8000U)) {
+         return twos_complement;
+      }
+      if (is_valid_temperature_raw(sign_magnitude) && !is_valid_temperature_raw(twos_complement)) {
+         return sign_magnitude;
+      }
+      if (is_valid_temperature_raw(twos_complement) && !is_valid_temperature_raw(sign_magnitude)) {
+         return twos_complement;
+      }
+      return sign_magnitude;
+   }
+}
+
 AM2302::AM2302_Sensor::AM2302_Sensor(uint8_t pin) : _millis_last_read{0}, _pin{pin}
 {}
 
@@ -97,14 +123,7 @@ int8_t AM2302::AM2302_Sensor::read_sensor() {
 
    if (_checksum_ok) {
       _hum  = static_cast<uint16_t>((_data[0] << 8) | _data[1]);
-      if (_data[2] & 0x80) {
-         // negative temperature detected
-         _data[2] &= 0x7f;
-         _temp = -static_cast<int16_t>((_data[2] << 8) | _data[3]);
-      }
-      else {
-         _temp = static_cast<int16_t>((_data[2] << 8) | _data[3]);
-      }
+      _temp = decode_temperature_raw(_data[2], _data[3]);
       return AM2302_READ_OK;
    }
    else {
