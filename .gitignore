@@ -34,6 +34,15 @@
 # Mac related files
 .DS_Store
 
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# build folder
+build
+
 # doxy files
 docs/html/*
 docs/latex/*

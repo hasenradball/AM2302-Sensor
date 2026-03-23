@@ -1,12 +1,13 @@
 /**
- * @file    AM2302-Sensor.h
+ * @file    AM2302-Sensor.cpp
  * @author  Frank Häfele
- * @date    21.11.2023
- * @version 1.4.0
+ * @date    23.03.2026
+ * @version 1.5.0
  * @brief   Measure Temperature and Humidity of AM2302-Sensor
  */
 
 #include <AM2302-Sensor.h>
+#include <string.h>
 
 AM2302::AM2302_Sensor::AM2302_Sensor(uint8_t pin) : _millis_last_read{0}, _pin{pin}
 {}
@@ -64,9 +65,9 @@ int8_t AM2302::AM2302_Sensor::read_sensor() {
    // ******************************
    // Acknowledge Sequence 80us LOW 80 us HIGH
    // wait for LOW (80 µs)
-   await_state(0);
+   if (await_state(0) == AM2302_ERROR_TIMEOUT) return AM2302_ERROR_TIMEOUT;
    // wait for HIGH (80 µs)
-   await_state(1);
+   if (await_state(1) == AM2302_ERROR_TIMEOUT) return AM2302_ERROR_TIMEOUT;
 
    // *****************************
    //  ==== Read Sensor Data ====
@@ -75,36 +76,17 @@ int8_t AM2302::AM2302_Sensor::read_sensor() {
    // read 40 bits from sensor into the buffer:
    // ==> HIGH state is 70 µs
    // ==> LOW state is 28 µs
-   uint8_t _data[5U] = {0};
+   memset(_data, 0, sizeof(_data));
    if (read_sensor_data(_data, 5U) == AM2302_ERROR_TIMEOUT) {
       return AM2302_ERROR_TIMEOUT;
    }
    // ==> END of time critical code <==
    
-   // check checksum
-   _checksum_ok = (_data[4] == ( (_data[0] + _data[1] + _data[2] + _data[3]) & 0xFF) );
-
-   /*
-   // Code part to check the checksum
-   // Due to older sensors have an bug an deliver wrong data
-   auto d4 = _data[4];
-   auto cs = ( (_data[0] + _data[1] + _data[2] + _data[3]) & 0xFF) ;
-   Serial.print("delivered Checksum:  ");
-   AM2302_Tools::print_byte_as_bit(d4);
-   Serial.print("calculated Checksum: ");
-   AM2302_Tools::print_byte_as_bit(cs);
-   */
+   _checksum_ok = AM2302_Tools::validateChecksum(_data[0], _data[1], _data[2], _data[3], _data[4]);
 
    if (_checksum_ok) {
-      _hum  = static_cast<uint16_t>((_data[0] << 8) | _data[1]);
-      if (_data[2] & 0x80) {
-         // negative temperature detected
-         _data[2] &= 0x7f;
-         _temp = -static_cast<int16_t>((_data[2] << 8) | _data[3]);
-      }
-      else {
-         _temp = static_cast<int16_t>((_data[2] << 8) | _data[3]);
-      }
+      _hum = AM2302_Tools::decode_humidity_data(_data[0], _data[1]);
+      _temp = AM2302_Tools::decode_temperature_data( _data[2], _data[3]);
       return AM2302_READ_OK;
    }
    else {
@@ -181,7 +163,7 @@ void AM2302::AM2302_Sensor::resetData() {
    _hum = 0;
 }
 
-void AM2302_Tools::print_byte_as_bit(char value) {
+void AM2302_Tools::print_byte_as_bit(uint8_t value) {
    for (int i = 7; i >= 0; --i) {
       char c = (value & (1 << i)) ? '1' : '0';
       Serial.print(c);

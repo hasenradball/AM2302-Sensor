@@ -1,8 +1,8 @@
 /**
  * @file    AM2302-Sensor.h
  * @author  Frank Häfele
- * @date    21.11.2023
- * @version 1.4.0
+ * @date    23.03.2026
+ * @version 1.5.0
  * @brief   Measure Temperature and Humidity of AM2302-Sensor
  */
 
@@ -11,6 +11,7 @@
 #define __AM2302_SENSOR_H__
 
 #include <Arduino.h>
+#include "AM2302-Sensor_Tools.h"
 
 namespace AM2302 {
 
@@ -56,8 +57,8 @@ namespace AM2302 {
       int8_t read();
 
 
-      float get_Temperature() const {return _temp * 0.1F;}
-      float get_Humidity() const {return _hum * 0.1F;}
+      float get_Temperature() const {return _temp;}
+      float get_Humidity() const {return _hum;}
 
       /**
        * @brief get Sensor State in human readable manner
@@ -69,10 +70,12 @@ namespace AM2302 {
     private:
       // memory millis between last read
       unsigned long _millis_last_read;
+      // memory for sensor data
+      uint8_t _data[5] = {0};
       // holds humidity
-      uint16_t _hum {0};
+      float _hum {0.0f};
       // holds temperature
-      int16_t _temp {0};
+      float _temp {0.0f};
       // sensor pin
       uint8_t _pin;
       // holds checksum state
@@ -111,12 +114,12 @@ namespace AM2302 {
 }
 
 namespace AM2302_Tools {
-  /**
- * @brief helper function to print byte as bits
- * 
- * @param value byte with 8 bits
- */
-  void print_byte_as_bit(char value);
+   /**
+   * @brief helper function to print byte as bits
+   * 
+   * @param value byte with 8 bits
+   */
+   void print_byte_as_bit(const uint8_t value);
 }
 
 #endif
