@@ -57,8 +57,8 @@ namespace AM2302 {
       int8_t read();
 
 
-      float get_Temperature() const {return _temp;}
-      float get_Humidity() const {return _hum;}
+      inline float get_Temperature() const {return _temp;}
+      inline float get_Humidity() const {return _hum;}
 
       /**
        * @brief get Sensor State in human readable manner
