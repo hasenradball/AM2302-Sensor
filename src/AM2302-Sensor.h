@@ -87,7 +87,7 @@ namespace AM2302 {
      * @param state state to wait for
      * @return int8_t status
      */
-    int8_t await_state(uint8_t state);
+    int8_t await_pin_state(uint8_t state);
 
     /**
      * @brief initiate start sequence, setup pins and call of read_ sensor_data()

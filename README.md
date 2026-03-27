@@ -101,8 +101,11 @@ Required tools:
 With Visual Studio or Visual Studio Build Tools installed, run the commands in a Developer PowerShell:
 
 ```powershell
+# Generate Build System
 cmake -B build -DCMAKE_BUILD_TYPE=Release
+# Build a Project
 cmake --build build
+# Exceute Tests
 ctest --test-dir build --output-on-failure
 ```
 
@@ -110,8 +113,11 @@ ctest --test-dir build --output-on-failure
 Install CMake and a compiler toolchain, for example `g++` or `clang++`, and run:
 
 ```bash
+# Generate Build System
 cmake -B build -DCMAKE_BUILD_TYPE=Release
+# Build a Project
 cmake --build build
+# Exceute Tests
 ctest --test-dir build --output-on-failure
 ```
 
@@ -119,8 +125,11 @@ ctest --test-dir build --output-on-failure
 Install Xcode Command Line Tools and CMake, then run:
 
 ```bash
+# Generate Build System
 cmake -B build -DCMAKE_BUILD_TYPE=Release
+# Build a Project
 cmake --build build
+# Exceute Tests
 ctest --test-dir build --output-on-failure
 ```
 

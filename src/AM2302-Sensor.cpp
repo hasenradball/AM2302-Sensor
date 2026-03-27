@@ -94,7 +94,7 @@ int8_t AM2302::AM2302_Sensor::read_sensor() {
    }
 }
 
-int8_t AM2302::AM2302_Sensor::await_state(uint8_t state) {
+int8_t AM2302::AM2302_Sensor::await_pin_state(uint8_t state) {
    uint8_t wait_counter{0}, state_counter{0};
    // count wait for state time
    while ( (digitalRead(_pin) != state) ) {
@@ -118,25 +118,12 @@ int8_t AM2302::AM2302_Sensor::await_state(uint8_t state) {
 int8_t AM2302::AM2302_Sensor::read_sensor_data(uint8_t *buffer, uint8_t size) {
    for (uint8_t i = 0; i < size; ++i) {
       for (uint8_t bit = 0; bit < 8U; ++bit) {
-         uint8_t wait_counter{0}, state_counter{0};
-         // count wait for state time
-         while ( !digitalRead(_pin) ) {
-            ++wait_counter;
-            delayMicroseconds(1U);
-            if (wait_counter >= READ_TIMEOUT) {
-               return AM2302_ERROR_TIMEOUT;
-            }
+         int8_t bit_value = await_pin_state(1);
+         if (bit_value < 0) {
+            // error occured
+            return bit_value;
          }
-         // count state time
-         while ( digitalRead(_pin) ) {
-            ++state_counter;
-            delayMicroseconds(1U);
-            if (state_counter >= READ_TIMEOUT) {
-               return AM2302_ERROR_TIMEOUT;
-            }
-         }
-         buffer[i] <<= 1;
-         buffer[i] |= (state_counter > wait_counter);
+         buffer[i] = (buffer[i] << 1) | static_cast<uint8_t>(bit_value);
       }
    }
    return AM2302_READ_OK;
