@@ -65,9 +65,9 @@ int8_t AM2302::AM2302_Sensor::read_sensor() {
    // ******************************
    // Acknowledge Sequence 80us LOW 80 us HIGH
    // wait for LOW (80 µs)
-   if (await_state(0) == AM2302_ERROR_TIMEOUT) return AM2302_ERROR_TIMEOUT;
+   if (await_pin_state(0) == AM2302_ERROR_TIMEOUT) return AM2302_ERROR_TIMEOUT;
    // wait for HIGH (80 µs)
-   if (await_state(1) == AM2302_ERROR_TIMEOUT) return AM2302_ERROR_TIMEOUT;
+   if (await_pin_state(1) == AM2302_ERROR_TIMEOUT) return AM2302_ERROR_TIMEOUT;
 
    // *****************************
    //  ==== Read Sensor Data ====
