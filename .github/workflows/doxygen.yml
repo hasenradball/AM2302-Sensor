@@ -3,7 +3,7 @@ name: Generate Doxygen Documentation
 on:
   push:
     branches:
-      - develop  # Passe den Branch an, für den die Dokumentation generiert werden soll
+      - master  # Passe den Branch an, für den die Dokumentation generiert werden soll
   workflow_dispatch:
 
 jobs:
