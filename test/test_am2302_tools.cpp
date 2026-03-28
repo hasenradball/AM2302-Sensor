@@ -89,11 +89,11 @@ TEST(DecodeTemperatureTest, HighBitShiftRegression) {
 TEST(DecodeTemperatureTest, minus40_degrees_with_TC) {
   // 0xFE70 = -400 → -40.0°C
   float temp = AM2302_Tools::decode_temperature_data(0xFE, 0x70);
-  EXPECT_NE(temp, -40.0f);
+  EXPECT_EQ(temp, -40.0f);
 }
 
 TEST(DecodeTemperatureTest, minus18_degrees_with_TC) {
   // 0xFF4C = -180 → -18.0°C
   float temp = AM2302_Tools::decode_temperature_data(0xFF, 0x4C);
-  EXPECT_NE(temp, -18.0f);
+  EXPECT_EQ(temp, -18.0f);
 }
