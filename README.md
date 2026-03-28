@@ -1,7 +1,8 @@
 # AM2302-Sensor Library
-[![Spell Check](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/spell_checker.yml/badge.svg)](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/spell_checker.yml)
-[![Compile Examples](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/compile_examples.yml/badge.svg)](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/compile_examples.yml)
-[![Generate Doxygen Documentation](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/doxygen.yml/badge.svg)](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/doxygen.yml)
+[![Spell Check](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/spell_checker.yml/badge.svg?branch=master)](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/spell_checker.yml)
+[![Compile Examples](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/compile_examples.yml/badge.svg?branch=master)](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/compile_examples.yml)
+[![Generate Doxygen Documentation](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/doxygen.yml/badge.svg?branch=master)](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/doxygen.yml)
+[![Unit Tests](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/unit_tests.yml/badge.svg?branch=master)](https://github.com/hasenradball/AM2302-Sensor/actions/workflows/unit_tests.yml)
 
 Sensor Library for the AM2302 Sensor (aka DHT22) from ASAIR.<br>
 This Library is a controller independent library for reading the AM2302 Sensor also known as DHT22.
@@ -145,3 +146,4 @@ This library is licensed under MIT Licence.
 
 # Helpful Links
 * [ESP8266-01-Adapter](https://esp8266-01-adapter.de)
+* [AM2302-Adapter](https://esp8266-01-adapter.de/der-neue-am2302-dht22-sensor-adapter/)
