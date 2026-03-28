@@ -83,6 +83,7 @@ Contents</h1>
 <ul>
 <li>Sensor Documentation</li>
 <li>AM2302 Library Usage</li>
+<li>Unit Tests</li>
 <li>License</li>
 <li>Helpful Links</li>
 </ul>
@@ -142,10 +143,57 @@ Status Codes of AM2302-Sensor</h2>
 <li>AM2302_ERROR_READ_FREQ {-3};</li>
 </ul>
 <h1><a class="anchor" id="autotoc_md7"></a>
+Unit Tests</h1>
+<p>The project contains unit tests for the pure helper functions in <a href="src/AM2302-Sensor_Tools.h">src/AM2302-Sensor_Tools.h</a>. These tests validate:</p>
+<ul>
+<li>checksum calculation</li>
+<li>humidity decoding</li>
+<li>temperature decoding</li>
+<li>regression cases for bit shift and sign handling</li>
+</ul>
+<h2><a class="anchor" id="autotoc_md8"></a>
+Run tests locally</h2>
+<p>The tests are based on GoogleTest and are built with CMake.</p>
+<p>Required tools:</p>
+<ul>
+<li>CMake</li>
+<li>a C++17 compatible compiler</li>
+</ul>
+<h3><a class="anchor" id="autotoc_md9"></a>
+Windows</h3>
+<p>With Visual Studio or Visual Studio Build Tools installed, run the commands in a Developer PowerShell:</p>
+<div class="fragment"><div class="line"># Generate Build System</div>
+<div class="line">cmake -B build -DCMAKE_BUILD_TYPE=Release</div>
+<div class="line"># Build a Project</div>
+<div class="line">cmake --build build</div>
+<div class="line"># Execute Tests</div>
+<div class="line">ctest --test-dir build --output-on-failure</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md10"></a>
+Linux</h3>
+<p>Install CMake and a compiler toolchain, for example <code>g++</code> or <code>clang++</code>, and run:</p>
+<div class="fragment"><div class="line"># Generate Build System</div>
+<div class="line">cmake -B build -DCMAKE_BUILD_TYPE=Release</div>
+<div class="line"># Build a Project</div>
+<div class="line">cmake --build build</div>
+<div class="line"># Execute Tests</div>
+<div class="line">ctest --test-dir build --output-on-failure</div>
+</div><!-- fragment --><h3><a class="anchor" id="autotoc_md11"></a>
+macOS</h3>
+<p>Install Xcode Command Line Tools and CMake, then run:</p>
+<div class="fragment"><div class="line"># Generate Build System</div>
+<div class="line">cmake -B build -DCMAKE_BUILD_TYPE=Release</div>
+<div class="line"># Build a Project</div>
+<div class="line">cmake --build build</div>
+<div class="line"># Execute Tests</div>
+<div class="line">ctest --test-dir build --output-on-failure</div>
+</div><!-- fragment --><h2><a class="anchor" id="autotoc_md12"></a>
+Continuous Integration</h2>
+<p>The GitHub Actions workflow <a href=".github/workflows/unit_tests.yml">unit_tests.yml</a> builds and runs the unit tests automatically on every push and pull request.</p>
+<h1><a class="anchor" id="autotoc_md13"></a>
 License</h1>
 <p>This library is licensed under MIT Licence.</p>
 <p><a href="https://github.com/hasenradball/AM2302-Sensor/blob/master/LICENSE">AM2302-Sensor License</a></p>
-<h1><a class="anchor" id="autotoc_md8"></a>
+<h1><a class="anchor" id="autotoc_md14"></a>
 Helpful Links</h1>
 <ul>
 <li><a href="https://esp8266-01-adapter.de">ESP8266-01-Adapter</a> </li>
@@ -154,7 +202,7 @@ Helpful Links</h1>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Dec 31 2024 10:14:43 for AM2302-Sensor by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Sat Mar 28 2026 10:26:18 for AM2302-Sensor by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
