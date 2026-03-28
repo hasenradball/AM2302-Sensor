@@ -73,9 +73,9 @@ namespace AM2302 {
       // memory for sensor data
       uint8_t _data[5] = {0};
       // holds humidity
-      float _hum {0.0f};
+      float _hum;
       // holds temperature
-      float _temp {0.0f};
+      float _temp;
       // sensor pin
       uint8_t _pin;
       // holds checksum state

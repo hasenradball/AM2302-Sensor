@@ -8,8 +8,10 @@
 
 #include <AM2302-Sensor.h>
 #include <string.h>
+#include <math.h>
 
-AM2302::AM2302_Sensor::AM2302_Sensor(uint8_t pin) : _millis_last_read{0}, _pin{pin}
+AM2302::AM2302_Sensor::AM2302_Sensor(uint8_t pin)
+: _millis_last_read{0}, _hum{NAN}, _temp{NAN},_pin{pin}
 {}
 
 bool AM2302::AM2302_Sensor::begin() {
@@ -120,7 +122,7 @@ int8_t AM2302::AM2302_Sensor::read_sensor_data(uint8_t *buffer, uint8_t size) {
       for (uint8_t bit = 0; bit < 8U; ++bit) {
          int8_t bit_value = await_pin_state(1);
          if (bit_value < 0) {
-            // error occured
+            // error occurred
             return bit_value;
          }
          buffer[i] = (buffer[i] << 1) | static_cast<uint8_t>(bit_value);
@@ -145,9 +147,8 @@ const char * AM2302::AM2302_Sensor::get_sensorState(int8_t state) {
 }
 
 void AM2302::AM2302_Sensor::resetData() {
-   // reset tem to -255 and hum to 0 as indication
-   _temp = -2550;
-   _hum = 0;
+   _temp = NAN;
+   _hum = NAN;
 }
 
 void AM2302_Tools::print_byte_as_bit(uint8_t value) {

@@ -16,12 +16,12 @@ TEST(ValidateChecksumTest, InvalidChecksum) {
 }
 
 TEST(ValidateChecksumTest, AllZeroValid) {
-  // alle null: checksum muss 0 sein
+  // all null: checksum must be 0
   EXPECT_TRUE(AM2302_Tools::validateChecksum(0x00, 0x00, 0x00, 0x00, 0x00));
 }
 
 // =====================================================
-//  decode_humidity_data
+//  decode humidity data
 // =====================================================
 
 TEST(DecodeHumidityTest, NormalHumidity) {
@@ -47,7 +47,7 @@ TEST(DecodeHumidityTest, ZeroHumidity) {
 }
 
 // =====================================================
-//  decode_temperature_data
+//  decode temperature data for original AM2302 sensors
 // =====================================================
 
 TEST(DecodeTemperatureTest, PositiveTemperature) {
@@ -62,7 +62,7 @@ TEST(DecodeTemperatureTest, ZeroDegrees) {
 }
 
 TEST(DecodeTemperatureTest, NegativeTemperature) {
-  // Bit 15 gesetzt = negativ: 0x8020 → -(0x0020) = -32 → -3.2°C
+  // Bit 15 set = negative: 0x8020 → -(0x0020) = -32 → -3.2°C
   float temp = AM2302_Tools::decode_temperature_data(0x80, 0x20);
   EXPECT_EQ(temp, -3.2f);
 }
@@ -76,7 +76,7 @@ TEST(DecodeTemperatureTest, NegativeTemperatureLarge) {
 // Regressions-Test: High-Bit-Shift-Bug
 TEST(DecodeTemperatureTest, HighBitShiftRegression) {
   // temp_high = 0x81 hat Bit 7 gesetzt → früher Overflow auf AVR
-  // Muss korrekt als negative Temperatur dekodiert werden, kein UB
+  // has to be implemented as negative temperature, no UB!
   float temp = AM2302_Tools::decode_temperature_data(0x81, 0x00);
   EXPECT_EQ(temp, -25.6f);
 }

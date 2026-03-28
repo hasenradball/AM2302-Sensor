@@ -105,7 +105,7 @@ With Visual Studio or Visual Studio Build Tools installed, run the commands in a
 cmake -B build -DCMAKE_BUILD_TYPE=Release
 # Build a Project
 cmake --build build
-# Exceute Tests
+# Execute Tests
 ctest --test-dir build --output-on-failure
 ```
 
@@ -117,7 +117,7 @@ Install CMake and a compiler toolchain, for example `g++` or `clang++`, and run:
 cmake -B build -DCMAKE_BUILD_TYPE=Release
 # Build a Project
 cmake --build build
-# Exceute Tests
+# Execute Tests
 ctest --test-dir build --output-on-failure
 ```
 
@@ -129,7 +129,7 @@ Install Xcode Command Line Tools and CMake, then run:
 cmake -B build -DCMAKE_BUILD_TYPE=Release
 # Build a Project
 cmake --build build
-# Exceute Tests
+# Execute Tests
 ctest --test-dir build --output-on-failure
 ```
 
