@@ -3,7 +3,7 @@ name: Generate Doxygen Documentation
 on:
   push:
     branches:
-      - master  # Passe den Branch an, für den die Dokumentation generiert werden soll
+      - develop  # Passe den Branch an, für den die Dokumentation generiert werden soll
   workflow_dispatch:
 
 jobs:
@@ -28,9 +28,7 @@ jobs:
       # Prüfen, ob der Ordner erstellt wurde
       - name: Verify Documentation and copy pictures to html
         run: |
-          ls -la docs
-          mkdir docs/html/docs
-          cp docs/*.jpg docs/*.png docs/html/docs || true
+          ls -la docs/html
           touch docs/html/.nojekyll
 
       # Dokumentation deployen (z.B. in den gh-pages Branch)
