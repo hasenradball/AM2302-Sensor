@@ -12,6 +12,7 @@ This Library is a controller independent library for reading the AM2302 Sensor a
 ## Contents
 * [Sensor Documentation](#sensor-documentation)
 * [AM2302 Library Usage](#library-usage)
+* [Unit Tests](#unit-tests)
 * [License](#license)
 * [Helpful Links](#helpful-links)
 
@@ -77,6 +78,63 @@ The following status codes exists:
 * AM2302_ERROR_CHECKSUM   {-1};
 * AM2302_ERROR_TIMEOUT    {-2};
 * AM2302_ERROR_READ_FREQ  {-3};
+
+
+## Unit Tests
+The project contains unit tests for the pure helper functions in [src/AM2302-Sensor_Tools.h](src/AM2302-Sensor_Tools.h).
+These tests validate:
+
+* checksum calculation
+* humidity decoding
+* temperature decoding
+* regression cases for bit shift and sign handling
+
+### Run tests locally
+The tests are based on GoogleTest and are built with CMake.
+
+Required tools:
+
+* CMake
+* a C++17 compatible compiler
+
+#### Windows
+With Visual Studio or Visual Studio Build Tools installed, run the commands in a Developer PowerShell:
+
+```powershell
+# Generate Build System
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+# Build a Project
+cmake --build build
+# Execute Tests
+ctest --test-dir build --output-on-failure
+```
+
+#### Linux
+Install CMake and a compiler toolchain, for example `g++` or `clang++`, and run:
+
+```bash
+# Generate Build System
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+# Build a Project
+cmake --build build
+# Execute Tests
+ctest --test-dir build --output-on-failure
+```
+
+#### macOS
+Install Xcode Command Line Tools and CMake, then run:
+
+```bash
+# Generate Build System
+cmake -B build -DCMAKE_BUILD_TYPE=Release
+# Build a Project
+cmake --build build
+# Execute Tests
+ctest --test-dir build --output-on-failure
+```
+
+### Continuous Integration
+The GitHub Actions workflow [unit_tests.yml](.github/workflows/unit_tests.yml) builds and runs the unit tests automatically on every push and pull request.
 
 
 # License
