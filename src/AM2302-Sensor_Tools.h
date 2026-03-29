@@ -70,7 +70,7 @@ namespace AM2302_Tools {
       bool isTcValid = isValid(temp_value_tc);
 
       // ----------------------------------------------
-      // 4.) Desicion
+      // 4.) Decision
       // ----------------------------------------------
       
       // sm is master due to datasheet description
