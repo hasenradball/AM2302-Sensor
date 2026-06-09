@@ -24,7 +24,7 @@ namespace AM2302_Tools {
    /**
     * @brief decode data for humidity value
     * 
-    * @param hum_high hugh byte of humidity
+    * @param hum_high high byte of humidity
     * @param hum_low low byte of humidity
     * @return float humidity value
     */

@@ -2,12 +2,15 @@ name: Compile Examples
 
 on: [push, pull_request]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build-arduino:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@main
-      - uses: arduino/compile-sketches@v1
+      - uses: arduino/compile-sketches@v1.1.2
         with:
           libraries: |
             - source-path: ./
@@ -35,7 +38,7 @@ jobs:
         uses: actions/checkout@main
 
       - name: Compile ESP8266 examples
-        uses: arduino/compile-sketches@v1
+        uses: arduino/compile-sketches@v1.1.2
         with:
           platforms: |
             - name: esp8266:esp8266
@@ -46,4 +49,4 @@ jobs:
             - source-path: ./
           sketch-paths:
             ./examples/Wemos_D1_mini_AM2302_Sensor_Array_Example/Wemos_D1_mini_AM2302_Sensor_Array_Example.ino
-            
+

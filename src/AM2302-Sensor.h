@@ -42,6 +42,16 @@ namespace AM2302 {
       explicit AM2302_Sensor(uint8_t pin);
 
       /**
+       * @brief operator bool return if sensor was successfully found during begin method
+       * 
+       * @return true returns if sensor was available at begin()
+       * @return false return if sensor was not available at begin()
+       */
+      explicit operator bool() const noexcept {
+         return _isAvailable;
+      }
+
+      /**
        * @brief begin function, setup pin and run sensor check.
        * 
        * @return true if sensor check is successful.
@@ -80,6 +90,8 @@ namespace AM2302 {
       uint8_t _pin;
       // holds checksum state
       bool _checksum_ok {false};
+      // hold if sensor is available
+      bool _isAvailable {false};
 
     /**
      * @brief wait for a specific pin state
