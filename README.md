@@ -58,6 +58,7 @@ The library use namespaces, so the object can be instantiated and used by:
 AM2302::AM2302_Sensor am2302{PIN};
 
 void setup() {
+   am2302.begin();
    // use bool operator to check if sensor is available
    if (am2302) {
       auto status = am2302.read();
