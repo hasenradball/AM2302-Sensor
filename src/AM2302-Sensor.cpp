@@ -25,11 +25,12 @@ bool AM2302::AM2302_Sensor::begin() {
    auto status{read()};
    _millis_last_read = millis();
    if (status == AM2302_READ_OK) {
-      return true;
+      _isAvailable = true;
    }
    else {
-      return false;
+      _isAvailable = false;
    }
+   return _isAvailable;
 }
 
 int8_t AM2302::AM2302_Sensor::read() {

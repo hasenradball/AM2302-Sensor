@@ -58,17 +58,18 @@ The library use namespaces, so the object can be instantiated and used by:
 AM2302::AM2302_Sensor am2302{PIN};
 
 void setup() {
-  am2302.begin();
+   // use bool operator to check if sensor is available
+   if (am2302) {
+      auto status = am2302.read();
+      Serial.print("\n\nstatus of sensor read(): ");
+      Serial.println(status);
 
-  auto status = am2302.read();
-  Serial.print("\n\nstatus of sensor read(): ");
-  Serial.println(AM2302::AM2302_Sensor::get_sensorState(status));
+      Serial.print("Temperature: ");
+      Serial.println(am2302.get_Temperature());
 
-  Serial.print("Temperature: ");
-  Serial.println(am2302.get_Temperature());
-
-  Serial.print("Humidity:    ");
-  Serial.println(am2302.get_Humidity());
+      Serial.print("Humidity:    ");
+      Serial.println(am2302.get_Humidity());
+   }
 }
 
 ```
