@@ -88,6 +88,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a2f227cd7aac0c9458650acff77f386a3" id="r_a2f227cd7aac0c9458650acff77f386a3"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_m2302_1_1_a_m2302___sensor.html#a2f227cd7aac0c9458650acff77f386a3">AM2302_Sensor</a> (uint8_t pin)</td></tr>
 <tr class="memdesc:a2f227cd7aac0c9458650acff77f386a3"><td class="mdescLeft">&#160;</td><td class="mdescRight">Construct a new am2302::am2302 sensor::am2302 sensor object.  <br /></td></tr>
 <tr class="separator:a2f227cd7aac0c9458650acff77f386a3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a54cf78cb08d97790a7746dd2b5621617" id="r_a54cf78cb08d97790a7746dd2b5621617"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_m2302_1_1_a_m2302___sensor.html#a54cf78cb08d97790a7746dd2b5621617">operator bool</a> () const noexcept</td></tr>
+<tr class="memdesc:a54cf78cb08d97790a7746dd2b5621617"><td class="mdescLeft">&#160;</td><td class="mdescRight">operator bool return if sensor was successfully found during begin method  <br /></td></tr>
+<tr class="separator:a54cf78cb08d97790a7746dd2b5621617"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a723dc99de0e11ba271c2f1d4f528bf58" id="r_a723dc99de0e11ba271c2f1d4f528bf58"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_a_m2302_1_1_a_m2302___sensor.html#a723dc99de0e11ba271c2f1d4f528bf58">begin</a> ()</td></tr>
 <tr class="memdesc:a723dc99de0e11ba271c2f1d4f528bf58"><td class="mdescLeft">&#160;</td><td class="mdescRight">begin function, setup pin and run sensor check.  <br /></td></tr>
 <tr class="separator:a723dc99de0e11ba271c2f1d4f528bf58"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -194,6 +197,36 @@ false if sensor check failed. </dd></dl>
 
 </div>
 </div>
+<a id="a54cf78cb08d97790a7746dd2b5621617" name="a54cf78cb08d97790a7746dd2b5621617"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a54cf78cb08d97790a7746dd2b5621617">&#9670;&#160;</a></span>operator bool()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">AM2302::AM2302_Sensor::operator bool </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span><span class="mlabel">explicit</span><span class="mlabel">noexcept</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>operator bool return if sensor was successfully found during begin method </p>
+<dl class="section return"><dt>Returns</dt><dd>true returns if sensor was available at <a class="el" href="class_a_m2302_1_1_a_m2302___sensor.html#a723dc99de0e11ba271c2f1d4f528bf58" title="begin function, setup pin and run sensor check.">begin()</a> </dd>
+<dd>
+false return if sensor was not available at <a class="el" href="class_a_m2302_1_1_a_m2302___sensor.html#a723dc99de0e11ba271c2f1d4f528bf58" title="begin function, setup pin and run sensor check.">begin()</a> </dd></dl>
+
+</div>
+</div>
 <a id="a7393ba97b3eb4f679ac3b204cb73a9a9" name="a7393ba97b3eb4f679ac3b204cb73a9a9"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a7393ba97b3eb4f679ac3b204cb73a9a9">&#9670;&#160;</a></span>read()</h2>
 
@@ -221,7 +254,7 @@ false if sensor check failed. </dd></dl>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 28 2026 23:06:36 for AM2302-Sensor by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Jun 9 2026 16:30:12 for AM2302-Sensor by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>

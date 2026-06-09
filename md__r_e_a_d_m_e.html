@@ -121,17 +121,18 @@ Usage the AM2302-Sensor library in the Code</h2>
 <div class="fragment"><div class="line">AM2302::AM2302_Sensor am2302{PIN};</div>
 <div class="line"> </div>
 <div class="line">void setup() {</div>
-<div class="line">  am2302.begin();</div>
+<div class="line">   // use bool operator to check if sensor is available</div>
+<div class="line">   if (am2302) {</div>
+<div class="line">      auto status = am2302.read();</div>
+<div class="line">      Serial.print(&quot;\n\nstatus of sensor read(): &quot;);</div>
+<div class="line">      Serial.println(status);</div>
 <div class="line"> </div>
-<div class="line">  auto status = am2302.read();</div>
-<div class="line">  Serial.print(&quot;\n\nstatus of sensor read(): &quot;);</div>
-<div class="line">  Serial.println(AM2302::AM2302_Sensor::get_sensorState(status));</div>
+<div class="line">      Serial.print(&quot;Temperature: &quot;);</div>
+<div class="line">      Serial.println(am2302.get_Temperature());</div>
 <div class="line"> </div>
-<div class="line">  Serial.print(&quot;Temperature: &quot;);</div>
-<div class="line">  Serial.println(am2302.get_Temperature());</div>
-<div class="line"> </div>
-<div class="line">  Serial.print(&quot;Humidity:    &quot;);</div>
-<div class="line">  Serial.println(am2302.get_Humidity());</div>
+<div class="line">      Serial.print(&quot;Humidity:    &quot;);</div>
+<div class="line">      Serial.println(am2302.get_Humidity());</div>
+<div class="line">   }</div>
 <div class="line">}</div>
 </div><!-- fragment --> <h2><a class="anchor" id="autotoc_md6"></a>
 Status Codes of AM2302-Sensor</h2>
@@ -203,7 +204,7 @@ Helpful Links</h1>
 </div><!-- PageDoc -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Mar 28 2026 23:06:36 for AM2302-Sensor by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
+Generated on Tue Jun 9 2026 16:30:12 for AM2302-Sensor by&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.8
 </small></address>
 </body>
 </html>
