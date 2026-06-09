@@ -2,6 +2,9 @@ name: Compile Examples
 
 on: [push, pull_request]
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   build-arduino:
     runs-on: ubuntu-latest
@@ -46,4 +49,4 @@ jobs:
             - source-path: ./
           sketch-paths:
             ./examples/Wemos_D1_mini_AM2302_Sensor_Array_Example/Wemos_D1_mini_AM2302_Sensor_Array_Example.ino
-            
+
